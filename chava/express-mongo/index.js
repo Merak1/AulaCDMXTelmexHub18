@@ -39,17 +39,9 @@ app.get('/blog/:numero', controller.blog)
 // PRIMER GET A BASE DE DATOS
 
 app.get('/personas', controller.getPersonas)
-app.get('/personas/:id', controller.getPersona)
 app.post('/personas', controller.insertPersona)
 app.put('/personas/:id', controller.updatePersona)
-app.delete('/personas/:id', controller.removePersona)
-
-// ASí podría mondificar por completo un Recurso Lugar
-// app.get('/lugares', controller.getLugares)
-// app.get('/lugares/:id', controller.getLugar)
-// app.post('/lugares', controller.insertLugar)
-// app.put('/lugares/:id', controller.updateLugar)
-// app.delete('/lugares/:id', controller.removeLugar)
+app.delete('/personas/:id', controller.deletePersona)
 
 // app.listen recibe 2 parametros, un número que es el puerto donde escucharé
 // y una función callback que ejecutará cuando estoy corriendo
