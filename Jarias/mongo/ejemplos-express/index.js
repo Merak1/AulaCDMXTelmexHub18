@@ -38,7 +38,7 @@ app.get('/personas', controller.getPersonas)
 //insertar
 app.post('/personas', controller.insertPersona)
 //editar
-app.post('/personas', controller.editarPersona)
+app.put('/personas', controller.editarPersona)
 //eliminar
 app.post('/personas', controller.eliminarPersona)
 

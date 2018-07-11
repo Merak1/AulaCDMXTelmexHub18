@@ -31,7 +31,7 @@ function getPersonas (req, res) {
         })
     })
 }
-function insertPersona (req, res) {
+function editarPersona (req, res) {
     client.connect(url, function (err, conn) {
         if (err) console.log(err)
         let db = conn.db(dbName)
@@ -61,7 +61,7 @@ module.exports = {
     carta,
     saludo,
     getPersonas,
-    insertPersona,
+    editarPersona   ,
     eliminarPersona
 }
 console.log('funciona')
