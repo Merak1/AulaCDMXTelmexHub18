@@ -1,55 +1,64 @@
-let express = require('express')
-let app = express()
-const path = require('path')
-let controller = require('./controller')
+let mongo = require("mongodb")
+let client = mongo.MongoClient
+const url = 'mongodb://localhost:27017'
+const dbName = 'telmex'
 
-
-
-
-//Blog 
-
-app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'views'))
-
-app.get('/blog/:num', function (req, res ){
-
-    res.render('blog', {
-        title: 'Blog individual, página de prueba ',
-        subtitle:'Esto es un subtítulo ' +  req.params.num,
-        content:'Este contenido es diferente '+'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil quam ipsam, repudiandae mollitia, ex quibusdam magnam dolores dicta placeat nam perferendis animi corporis sequi, reprehenderit itaque voluptates neque voluptatum laborum perspiciatis ut! Dicta, quidem quibusdam qui rerum explicabo consequatur corporis, corrupti laudantium reiciendis ullam asperiores tenetur est repudiandae saepe?'
-    })
-})
-app.get('/blog/', function (req, res ){
-
-    res.render('blogPrin')
-    })
-    
-
-
-app.get('/', function (req, res) {
-    res.render('index', {
-        title: 'Página principal, esto está muy cabrón!',
-        Bottom: [
-            {
-                name: 'Memo',
-                age: 26,
-                hasPets: true,
-                pets: ['perro', 'gato']
-            },
-            {
-                name: 'jorge',
-                age: 48,
-                hasPets: false
-            },
-            {
-                name: 'chava',
-                age: 1000,
-                hasPets: true,
-                pets: ['changuito']
+function findBlogByNum (req, res) {
+    client.connect(url, (err, conn) => {
+        if (err) console.log(err)
+        let db = conn.db(dbName)
+        db.collection('blogs')
+        .findOne(
+            {num: req.params.num},
+            function (err, data) {
+                res.render('blog', data)
             }
-        ]
+        )
     })
-})
+}
 
+function findAllBlogs (req, res) {
+    client.connect(url, (err, conn) => {
+        if (err) console.log(err)
+        let db = conn.db(dbName)
+        db.collection('blogs')
+        .find({})
+        .toArray(function (err, data) {
+            res.send(data)
+        })
+    })
+}
 
-app.listen(3000, function () {console.log('Connected in port 3000')})
+function renderNewBlog (req, res) {
+    res.render('blogNew',{
+        title :'Crea nuevo blog',
+        
+    })
+}
+function renderHome (req, res) {
+    res.render('blogPrin')
+}
+
+function insertBlog (req, res) {
+    console.log('body', req.body)
+    client.connect(url, (err, conn) => {
+        if (err) console.log(err)
+        let db = conn.db(dbName)        
+        db.collection('blogs')
+        .insert(
+            req.body,
+            function (err, data) {
+                console.log(data)
+                res.send(data)
+            }
+        )
+    })
+}
+
+module.exports = {
+    findAllBlogs,
+    findBlogByNum,
+    renderNewBlog,
+    renderHome,
+    insertBlog
+}

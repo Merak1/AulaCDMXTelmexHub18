@@ -3,7 +3,7 @@ let app = express()
 const path = require('path')
 
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(express-handlebars, 'views'))
 
 app.get('/', function (req, res) {
     res.render('hola', {
