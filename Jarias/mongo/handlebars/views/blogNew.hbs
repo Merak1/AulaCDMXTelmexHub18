@@ -1,0 +1,20 @@
+
+<div id="nuevo" >
+    <h1>{{title}}</h1>
+  <form id="blog-form" onsubmit="return submitBlog(event);">
+ <label for="title">Titulo: </label>
+        <input type="text" id="title" name="title" class="form-control"value="{{subtitleInput}}" style="color: rgb(12,43,122);text-align:center; width:100%;"name="todo">
+    
+    <div>
+        <label for="num">Número: </label>
+        <input type="number" id="num" name="num"style="color: rgb(12,43,122);text-align:center; width:100%;" >
+    </div>
+    <div>
+        <label for="text">Texto: </label>
+        <textarea name="text" id="text" type="text" rows="6" class="form-control"value="{{subtitleInput}}" style="color: rgb(12,43,122);text-align:center; width:100%;"></textarea>
+    </div>
+    <br>
+    <button type="submit">Agregar</button>
+</form>
+<script src="/js/submit-blog.js"></script>
+</div>

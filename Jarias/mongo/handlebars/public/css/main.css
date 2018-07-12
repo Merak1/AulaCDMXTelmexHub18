@@ -1,0 +1,11 @@
+body  {
+    color: rgb(178, 212, 245);
+}
+
+label{
+    text-align: center;
+}
+#nuevo{
+    background-color: rgb(230, 114, 114); padding: 50px;
+     text-align: center;
+}
