@@ -1,1 +1,0 @@
-##Proyecto galería nutricional  interactiva 
