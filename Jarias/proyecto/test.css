@@ -1,0 +1,15 @@
+:root {
+    --main-h-color: rgb(143, 32, 32);
+  }
+  
+
+h1{
+    color:var(--main-h-color);
+}
+a{
+    color:var(--main-h-color);
+    text-decoration: none;
+}
+#tubaman{
+    width: 300px;
+}
